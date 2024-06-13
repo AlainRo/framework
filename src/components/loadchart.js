@@ -21,7 +21,7 @@ export function loadchart(data, {width, height} = {}) {
         width,
         height,
         marks: [
-          Plot.lineY(dataF, { x: "date", y: "cumul", curve: "step-after" }),
+          Plot.lineY(dataF, { x: "date", y: "cumul", tip: true, curve: "step-after" }),
           Plot.ruleY([0])
         ]
       })

@@ -8,11 +8,13 @@ toc: false
 
 
 ```js
+import {loadchart} from "./components/loadchart.js"
+````
+```js
 const raw= await FileAttachment("./data/travaux.json").json();
 const date = raw.shift().datedebut // récupère la date de l'extraction
 const data = raw
 const pasCommence = data.filter(d => new Date(d.datedebut) -new Date() > 0).length
-
 ```
 # Les statistiques des chantiers en cours
 <div class="grid grid-cols-4">
@@ -67,16 +69,8 @@ const pasCommence = data.filter(d => new Date(d.datedebut) -new Date() > 0).leng
      <h2>Nombre de projets futurs pas encore commencés</h2>
     <span class="big">${pasCommence}</span> 
   </div>
+</div>
   <div class="card">
      <h2>Histogramme des travaux</h2>
-     <div name="curve></div>
+      ${display(loadchart(data, {width: 800,height:500}))}
   </div>
-</div>
-
-```js
-import {loadchart} from "./commponents/loadchart.js"
-```
-
-```js
-loadchart(data, {width: width,height:500})
-```
