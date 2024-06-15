@@ -51,7 +51,7 @@ const pasCommence = data.filter(d => new Date(d.datedebut) -new Date() > 0).leng
           width,
           height: 100,
           marks: [
-            Plot.barY(data, Plot.binX({ y: "count" , filter: d=> d.length> 8}, { x: "duree"})),
+            Plot.barY(data, Plot.binX({ y: "count" , filter: d=> d.length> 10}, { x: "duree"})),
             Plot.ruleY([0])
           ]
     }))}
@@ -73,4 +73,6 @@ const pasCommence = data.filter(d => new Date(d.datedebut) -new Date() > 0).leng
   <div class="card">
      <h2>Histogramme des travaux</h2>
       ${display(loadchart(data, {width: 800,height:500}))}
+      Ce diagramme est la superposition de chaque chantier [ch
+      datedebut, dafefin].
   </div>

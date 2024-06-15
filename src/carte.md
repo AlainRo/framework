@@ -2,9 +2,12 @@
 title: Carte
 slug: travaux
 toc: false
+theme: wide
 ---
 
 # La carte interactive des chantiers Toulousains au ${formatDate(date)}
+
+![](./legend.svg)
 ```js
 const chantiers = await FileAttachment("./data/travaux.json").json();
 const date = chantiers.shift().datedebut
