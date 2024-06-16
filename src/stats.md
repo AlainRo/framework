@@ -24,8 +24,8 @@ const pasCommence = data.filter(d => new Date(d.datedebut) -new Date() > 0).leng
     <h3>Déclarés : ${data.length.toLocaleString("fr-FR")}</h3>
   </div>
     <div class="card">
-    <h1>Date des données</h1>
-      <span>${d3.timeFormat("%d-%b-%Y %H:%M")(new Date(date))}</span>
+    <h1>Au :</h1>
+      <span class="big">${d3.timeFormat("%d-%b-%Y %H:%M")(new Date(date))}</span>
   </div>
   <div class="card">
     <h2>Nombre de déclarants</h2>
@@ -62,17 +62,23 @@ const pasCommence = data.filter(d => new Date(d.datedebut) -new Date() > 0).leng
   </div>
   <div class="card">
      <h2>Nombre de projets en retard de terminaison</h2>
-    <span class="big">${data.filter(d => new Date(d.datefin) - new Date()
-    <0 ).length}</span> 
+    <span class="big"><font size="7">${data.filter(d => new Date(d.datefin) - new Date()
+    <0 ).length}</font></span> 
   </div>
   <div class="card">
      <h2>Nombre de projets futurs pas encore commencés</h2>
     <span class="big">${pasCommence}</span> 
   </div>
 </div>
+<div class="grid grid-cols-2">
   <div class="card">
      <h2>Histogramme des travaux</h2>
-      ${display(loadchart(data, {width: 800,height:500}))}
-      Ce diagramme est la superposition de chaque chantier [ch
-      datedebut, dafefin].
+      ${loadchart(data, {width: 800,height:500})}
+      Ce diagramme est la superposition de chaque chantier [datedebut, dafefin].
   </div>
+  <div class="card">
+     <h2>Histogramme des travaux à 10 jours</h2>
+      ${loadchart(data.filter(d => Math.abs((new Date(d.datefin)-new Date())/3600/24/1000
+      ) <10), {width: 800,height:500})}
+  </div>
+</div>

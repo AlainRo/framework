@@ -1,6 +1,7 @@
 ---
 title: Table
 slug: table
+theme: dark
 ---
 
 # Les chantiers Toulousains en date du ${formatDate(date)}

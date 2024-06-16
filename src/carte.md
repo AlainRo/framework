@@ -18,7 +18,7 @@ import {map} from "./components/map.js"
 ```js
 const div = display(document.createElement("div"));
 div.style = "height: 600px;";
-map(chantiers, div, {width: width,height:500})
+map(chantiers, div, {width: width,height:800})
 ```
 
 
