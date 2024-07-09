@@ -72,12 +72,12 @@ const pasCommence = data.filter(d => new Date(d.datedebut) -new Date() > 0).leng
 </div>
 <div class="grid grid-cols-2">
   <div class="card">
-     <h2>Histogramme des travaux</h2>
+     <h2>Histogramme des travaux (Reste A Faire en j)</h2>
       ${loadchart(data, {width: 800,height:500})}
       Ce diagramme est la superposition de chaque chantier [datedebut, dafefin].
   </div>
   <div class="card">
-     <h2>Histogramme des travaux à 10 jours</h2>
+     <h2>Histogramme des travaux à 10 jours (Reste A Faire en j)</h2>
       ${loadchart(data.filter(d => Math.abs((new Date(d.datefin)-new Date())/3600/24/1000
       ) <10), {width: 800,height:500})}
   </div>
