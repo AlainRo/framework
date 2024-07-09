@@ -1,8 +1,8 @@
 on:
   # Run this workflow whenever a new commit is pushed to main.
   push: {branches: [main]}
-  # Run this workflow once per day, at 08:00 UTC
-  schedule: [{cron: "0 8 * * *"}]
+  # Run this workflow once per day, at 11:00 UTC
+  schedule: [{cron: "0 11 * * *"}]
   # Run this workflow when triggered manually in GitHub’s UI.
   workflow_dispatch: {}
 
@@ -22,4 +22,4 @@ jobs:
         run: npm run deploy -- --message "$(git log -1 --pretty=%s)"
         env:
           # Authentication information. See below for how to set this up.
-          OBSERVABLE_TOKEN: ${{ secrets.OBSERVABLE_TOKEN }}
+          OBSERVABLE_TOKEN: ${{secrets.OBSERVABLE_TOKEN }}
