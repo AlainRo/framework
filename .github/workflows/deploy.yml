@@ -1,7 +1,7 @@
 on:
   # Run this workflow whenever a new commit is pushed to main.
   push: {branches: [main]}
-  # Run this workflow once per day, at 11:00 UTC
+  # Run this workflow once per day, at 11:00 UTC (Paris -2 hours: 1pm local)
   schedule: [{cron: "0 11 * * *"}]
   # Run this workflow when triggered manually in GitHub’s UI.
   workflow_dispatch: {}
