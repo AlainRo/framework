@@ -9,13 +9,32 @@ toc: false
 
 ```js
 import {loadchart} from "./components/loadchart.js"
+import {compare, remove, download} from "./components/compare.js"
+import {DL} from "./components/download.js"
 ````
-```js
+```js 
 const raw= await FileAttachment("./data/travaux.json").json();
-const date = raw.shift().datedebut // récupère la date de l'extraction
-const data = raw
+const fileset = view(Inputs.select(raw, {
+  format: (d) => d.date
+}));
+const del = view(Inputs.button("Delete"))
+
+const exp = view(Inputs.button("Export"))
+
+const date = raw[0].date // récupère la date de l'extraction
+const data = raw[0].value
 const pasCommence = data.filter(d => new Date(d.datedebut) -new Date() > 0).length
+const comp = compare(raw[0],raw[1])
+const added = comp.added
+const modified = comp.modified
+const deleted = comp.deleted
+const div = display(document.createElement("div"));
+//DL(div)
 ```
+
+
+<a href= "https://alainro.observablehq.cloud/chantiers-toulouse/_file/data/history.json">Download</a>
+
 # Les statistiques des chantiers en cours
 <div class="grid grid-cols-4">
   <div class="card">
@@ -81,4 +100,31 @@ const pasCommence = data.filter(d => new Date(d.datedebut) -new Date() > 0).leng
       ${loadchart(data.filter(d => Math.abs((new Date(d.datefin)-new Date())/3600/24/1000
       ) <10), {width: 800,height:500})}
   </div>
+</div>
+<div class="grid grid-cols-2">
+  <div class="card">
+     <h2>Longueur de l'historique</h2>
+      <span class="big">${raw.length}</span> 
+  </div>
+  <div class="card">
+     <h2>Nombre de travaux éliminés</h2>
+      <span class="big">${deleted}</span> 
+  </div>
+</div>
+<div class="grid grid-cols-2">
+  <div class="card">
+     <h2>Nombre de travaux ajoutés</h2>
+      <span class="big">${added}</span> 
+  </div>
+  <div class="card">
+     <h2>Nombre de travaux modifiés</h2>
+      <span class="big">${modified}</span> 
+  </div>
+</div>
+<div class="grid grid-cols-2">
+  <div class="card">
+     <h2>Global variable</h2>
+      <span class="big">${fileset.date}</span> 
+  </div>
+
 </div>

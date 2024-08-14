@@ -1,4 +1,5 @@
-
+//import {writeFileSync} from 'node:fs/promises'
+import { writeFileSync, readFileSync } from 'node:fs';
 
 async function json(url){
     const response = await fetch(url)
@@ -7,6 +8,9 @@ async function json(url){
 }
 
 const raw = await json(  "https://www.data.gouv.fr/fr/datasets/r/706125f9-13de-486d-96c6-cde4be2e4eff")
+
+//const current= await json("./_file/travaux.json")
+
 
 const StartedSince = (d) => {
     const b = new Date(d);
@@ -106,9 +110,24 @@ const data = raw.map((d) => {
 
     return d;
   })
+// Recover history
+let historyF = "[]";
+try {
+  historyF = readFileSync('./src/data/history.json')
+}
+catch (err) {
+  console.error(err)
+}
+ const  history = JSON.parse(historyF)
+ // Add the time of exact run time
+ history.unshift({date: new Date(), value: data});
+ const hist = JSON.stringify(history)
+ try {
+   writeFileSync('src/data/history.json', hist);
+   // file written successfully
+ } catch (err) {
+   console.error(err);
+ }
 
-  
- // Add a line to give the exact run time
- data.unshift({datedebut: new Date()})
-
-process.stdout.write(JSON.stringify(data))
+//console.error(content)
+process.stdout.write(hist)
