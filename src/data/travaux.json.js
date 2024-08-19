@@ -9,9 +9,6 @@ async function json(url){
 
 const raw = await json(  "https://www.data.gouv.fr/fr/datasets/r/706125f9-13de-486d-96c6-cde4be2e4eff")
 
-//const current= await json("./_file/travaux.json")
-
-
 const StartedSince = (d) => {
     const b = new Date(d);
     const t = new Date();
@@ -121,9 +118,19 @@ catch (err) {
  const  history = JSON.parse(historyF)
  // Add the time of exact run time
  history.unshift({date: new Date(), value: data});
- const hist = JSON.stringify(history)
+
+ //remove same dates 
+
+
+ //keep to 10 values
+ //while (history.length > 10)
+ // {history.pop()}
+
+
+
+const hist = JSON.stringify(history)
  try {
-   writeFileSync('src/data/history.json', hist);
+   writeFileSync('./src/data/history.json', hist);
    // file written successfully
  } catch (err) {
    console.error(err);

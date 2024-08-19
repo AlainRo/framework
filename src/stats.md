@@ -8,16 +8,17 @@ toc: false
 
 
 ```js
+import {download} from "npm:@observablehq/stdlib"
 import {loadchart} from "./components/loadchart.js"
-import {compare, remove, download} from "./components/compare.js"
-import {DL} from "./components/download.js"
+import {compare, remove} from "./components/compare.js"
+//import {DL} from "./components/download.js"
 ````
 ```js 
 const raw= await FileAttachment("./data/travaux.json").json();
 const fileset = view(Inputs.select(raw, {
   format: (d) => d.date
 }));
-const del = view(Inputs.button("Delete"))
+const del = view(Inputs.button("Delete",{reduce: () => remove(fileset)}))
 
 const exp = view(Inputs.button("Export"))
 
@@ -29,7 +30,10 @@ const added = comp.added
 const modified = comp.modified
 const deleted = comp.deleted
 const div = display(document.createElement("div"));
+//const blob = new Blob([JSON.stringify(raw, null, 2)],  {type: "text/json"});
+//download(blob, 'history.json', 'History');
 //DL(div)
+<a href="./_file/data/history.json" download>
 ```
 
 
