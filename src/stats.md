@@ -11,33 +11,23 @@ toc: false
 import {download} from "npm:@observablehq/stdlib"
 import {loadchart} from "./components/loadchart.js"
 import {compare, remove} from "./components/compare.js"
-//import {DL} from "./components/download.js"
-````
-```js 
-const raw= await FileAttachment("./data/travaux.json").json();
+
+
+const raw = await FileAttachment("./data/travaux.json").json();
 const fileset = view(Inputs.select(raw, {
   format: (d) => d.date
 }));
-const del = view(Inputs.button("Delete",{reduce: () => remove(fileset)}))
-
-const exp = view(Inputs.button("Export"))
-
-const date = raw[0].date // récupère la date de l'extraction
+const date = raw[0].date
 const data = raw[0].value
+
 const pasCommence = data.filter(d => new Date(d.datedebut) -new Date() > 0).length
 const comp = compare(raw[0],raw[1])
 const added = comp.added
 const modified = comp.modified
 const deleted = comp.deleted
 const div = display(document.createElement("div"));
-//const blob = new Blob([JSON.stringify(raw, null, 2)],  {type: "text/json"});
-//download(blob, 'history.json', 'History');
-//DL(div)
-<a href="./_file/data/history.json" download>
+
 ```
-
-
-<a href= "https://alainro.observablehq.cloud/chantiers-toulouse/_file/data/history.json">Download</a>
 
 # Les statistiques des chantiers en cours
 <div class="grid grid-cols-4">
@@ -128,7 +118,7 @@ const div = display(document.createElement("div"));
 <div class="grid grid-cols-2">
   <div class="card">
      <h2>Global variable</h2>
-      <span class="big">${fileset.date}</span> 
+      <span class="big">${JSON.parse(localStorage.getItem("travaux")).length}</span> 
   </div>
 
 </div>

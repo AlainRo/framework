@@ -1,4 +1,4 @@
-//import {writeFileSync} from 'node:fs/promises'
+
 import { writeFileSync, readFileSync } from 'node:fs';
 
 async function json(url){
@@ -111,10 +111,10 @@ const data = raw.map((d) => {
 let historyF = "[]";
 try {
   historyF = readFileSync('./src/data/history.json')
-}
+  }
 catch (err) {
   console.error(err)
-}
+  }
  const  history = JSON.parse(historyF)
  // Add the time of exact run time
  history.unshift({date: new Date(), value: data});
@@ -132,9 +132,9 @@ const hist = JSON.stringify(history)
  try {
    writeFileSync('./src/data/history.json', hist);
    // file written successfully
- } catch (err) {
+  } catch (err) {
    console.error(err);
- }
+  }
 
 //console.error(content)
 process.stdout.write(hist)

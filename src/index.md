@@ -18,7 +18,10 @@ ObservableHQ/Framework pour :
 * la déployer gratuitement sur le web
 * automatiser le processus quotidien de centralisation de la récupération des données
 
-
+```js
+const travaux = await FileAttachment("./data/travaux.json").json();
+localStorage.setItem("travaux", JSON.stringify(travaux)) 
+```
 
 
 *Les conditions d'utilisation des données sont celles de [data.toulouse-metropole](https://data.toulouse-metropole.fr/terms/terms-and-conditions/)*
