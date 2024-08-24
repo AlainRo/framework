@@ -29,7 +29,7 @@ const div = display(document.createElement("div"));
 
 ```
 
-<a href="./_file/history.json" download > Download </a>
+<a href="./_file/data/history.json" download > Download </a>
 
 
 
