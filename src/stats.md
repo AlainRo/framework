@@ -8,9 +8,10 @@ toc: false
 
 
 ```js
-import {download} from "npm:@observablehq/stdlib"
+//import {download} from "npm:@observablehq/stdlib"
 import {loadchart} from "./components/loadchart.js"
 import {compare, remove} from "./components/compare.js"
+import {download} from "./components/download.js"
 
 
 const raw = await FileAttachment("./data/travaux.json").json();
@@ -27,9 +28,11 @@ const modified = comp.modified
 const deleted = comp.deleted
 const div = display(document.createElement("div"));
 
+download(raw);
+
 ```
 
-<a href="./_file/data/history.json" download > Download </a>
+<a href="./data/history.json" download > Download </a>
 
 
 

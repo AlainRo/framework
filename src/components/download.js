@@ -1,30 +1,32 @@
-//https://observablehq.com/@jeremiak/download-data-button
-export function DL (DOM) {
-    function button (data, filename = 'history.json'){
-        if (!data) throw new Error('Array of data required as first argument');
+//https://github.com/observablehq/stdlib/blob/main/src/dom/download.js
+export function download(value, name = "untitled", label = "Save") {
+  const a = document.createElement("a");
+  const b = a.appendChild(document.createElement("button"));
+  b.textContent = label;
+  a.download = name;
 
-        let downloadData = new Blob([JSON.stringify(data, null, 2)], {
-            type: "application/json"
-         });
-      
-        const size = (downloadData.size / 1024).toFixed(0);
-        const button = DOM.download(
-          downloadData,
-          filename,
-          `Download ${filename} (~${size} KB)`
-        );
-        return button;
-      }
-
-  let historyF = "[]";
-  try {
-    historyF = readFileSync('./src/data/history.json')
-  }
-  catch (err) {
-    console.error(err)
+  async function reset() {
+    await new Promise(requestAnimationFrame);
+    URL.revokeObjectURL(a.href);
+    a.removeAttribute("href");
+    b.textContent = label;
+    b.disabled = false;
   }
 
-  const  history = JSON.parse(historyF)  
-  return button(history)
+  a.onclick = async event => {
+    b.disabled = true;
+    if (a.href) return reset(); // Already saved.
+    b.textContent = "Saving…";
+    try {
+      const object = await (typeof value === "function" ? value() : value);
+      b.textContent = "Download";
+      a.href = URL.createObjectURL(object); // eslint-disable-line require-atomic-updates
+    } catch (ignore) {
+      b.textContent = label;
+    }
+    if (event.eventPhase) return reset(); // Already downloaded.
+    b.disabled = false;
+  };
 
+  return a;
 }
