@@ -1,5 +1,5 @@
 
-import { writeFileSync, readFileSync } from 'node:fs';
+import {writeFileSync, readFileSync} from 'node:fs';
 
 async function json(url){
     const response = await fetch(url)
@@ -108,14 +108,16 @@ const data = raw.map((d) => {
     return d;
   })
 // Recover history
-let historyF = "[]";
+let history;
+
 try {
-  historyF = readFileSync('./src/data/history.json')
+  const historyF = readFileSync('./src/data/history.json')
+  history = JSON.parse(historyF)
   }
 catch (err) {
   console.error(err)
   }
- const  history = JSON.parse(historyF)
+
  // Add the time of exact run time
  history.unshift({date: new Date(), value: data});
 
@@ -123,8 +125,8 @@ catch (err) {
 
 
  //keep to 10 values
- //while (history.length > 10)
- // {history.pop()}
+ while (history.length > 10)
+  {history.pop()}
 
 
 

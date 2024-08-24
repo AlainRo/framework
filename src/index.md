@@ -20,7 +20,7 @@ ObservableHQ/Framework pour :
 
 ```js
 const travaux = await FileAttachment("./data/travaux.json").json();
-localStorage.setItem("travaux", JSON.stringify(travaux)) 
+const fileset = localStorage.getItem("travaux")  // Max 10 Mb
 ```
 
 

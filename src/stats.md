@@ -8,16 +8,18 @@ toc: false
 
 
 ```js
-//import {download} from "npm:@observablehq/stdlib"
+
 import {loadchart} from "./components/loadchart.js"
 import {compare, remove} from "./components/compare.js"
-import {download} from "./components/download.js"
+//import {download} from "./components/download.js" // Inutile pour un fichier statique
 
 
 const raw = await FileAttachment("./data/travaux.json").json();
-const fileset = view(Inputs.select(raw, {
-  format: (d) => d.date
-}));
+const fileset = view(Inputs.select(new Map(raw.map((d, i) => [d.date, i])), {
+  value: 0, label : "Date à sélectionner"}
+));
+localStorage.setItem("travaux", fileset.toString())
+
 const date = raw[0].date
 const data = raw[0].value
 
@@ -28,7 +30,7 @@ const modified = comp.modified
 const deleted = comp.deleted
 const div = display(document.createElement("div"));
 
-download(raw);
+//download(raw);
 
 ```
 
@@ -125,7 +127,7 @@ download(raw);
 <div class="grid grid-cols-2">
   <div class="card">
      <h2>Global variable</h2>
-      <span class="big">${JSON.parse(localStorage.getItem("travaux")).length}</span> 
+      <span class="big">${fileset}</span> 
   </div>
 
 </div>
