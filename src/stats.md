@@ -29,6 +29,10 @@ const div = display(document.createElement("div"));
 
 ```
 
+<a href="./history.json" download > Download </a>
+
+
+
 # Les statistiques des chantiers en cours
 <div class="grid grid-cols-4">
   <div class="card">
