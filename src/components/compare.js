@@ -1,6 +1,7 @@
 //import { writeFileSync, readFileSync } from 'node:fs';
 
 export function compare(present, past) {
+    if (past === undefined) return {added : 'none', deleted: 'none', modified: 'none'}
     const PAST = new Map(past.value.map(d=> [d.numero, d]))
     const PRESENT = new Map(present.value.map(d=> [d.numero, d]))
     let added =0

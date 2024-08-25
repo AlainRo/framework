@@ -15,16 +15,23 @@ import {compare, remove} from "./components/compare.js"
 
 
 const raw = await FileAttachment("./data/travaux.json").json();
-const fileset = view(Inputs.select(new Map(raw.map((d, i) => [d.date, i])), {
+````
+
+```js
+let fileset=0
+fileset = await view(Inputs.select(new Map(raw.map((d, i) => [d.date, i])), {
   value: 0, label : "Date à sélectionner"}
 ));
 localStorage.setItem("travaux", fileset.toString())
+````
 
-const date = raw[0].date
-const data = raw[0].value
+```js
+console.log(fileset)
+const date = raw[fileset].date
+const data = raw[fileset].value
 
 const pasCommence = data.filter(d => new Date(d.datedebut) -new Date() > 0).length
-const comp = compare(raw[0],raw[1])
+const comp = compare(raw[fileset],raw?.[fileset+1])
 const added = comp.added
 const modified = comp.modified
 const deleted = comp.deleted
