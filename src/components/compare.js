@@ -12,18 +12,19 @@ export function compare(present, past) {
     return {added : added, deleted: deleted, modified: 0}
 }
 
-export function remove(date) {
+export function remove(n) {
     // load history
-    let historyF = "[]";
+    let history = [];
     try {
-      historyF = readFileSync('./src/data/history.json')
+      const historyF = readFileSync('./src/data/history.json')
+      history = JSON.parse(historyF)  
     }
     catch (err) {
       console.error(err)
     }
-    const  history = JSON.parse(historyF)  
+
 // remove entry
-    const remo = history.filter(d => d.date !== date)
+    const remo = history.filter((d,i) => i!== n)
 //save history
     const hist = JSON.stringify(remo)
     try {
@@ -36,4 +37,3 @@ export function remove(date) {
 export function download() {
     // load history
 }
-    

@@ -22,11 +22,15 @@ let fileset=0
 fileset = await view(Inputs.select(new Map(raw.map((d, i) => [d.date, i])), {
   value: 0, label : "Date à sélectionner"}
 ));
-localStorage.setItem("travaux", fileset.toString())
 ````
 
 ```js
-console.log(fileset)
+localStorage.setItem("travaux", fileset.toString())
+view(Inputs.button("Delete", {value: null, reduce: () => {remove(fileset); fileset=0}))
+````
+
+
+```js
 const date = raw[fileset].date
 const data = raw[fileset].value
 
@@ -40,6 +44,7 @@ const div = display(document.createElement("div"));
 //download(raw);
 
 ```
+
 
 <a href="./data/history.json" download > Download </a>
 
@@ -135,6 +140,10 @@ const div = display(document.createElement("div"));
   <div class="card">
      <h2>Global variable</h2>
       <span class="big">${fileset}</span> 
+  </div>
+    <div class="card">
+     <h2>Local Storage</h2>
+      <span class="big">${Global}</span> 
   </div>
 
 </div>

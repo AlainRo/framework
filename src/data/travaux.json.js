@@ -108,7 +108,7 @@ const data = raw.map((d) => {
     return d;
   })
 // Recover history
-let history;
+let history = []
 
 try {
   const historyF = readFileSync('./src/data/history.json')

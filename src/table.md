@@ -4,15 +4,26 @@ slug: table
 theme: dark
 ---
 
-# Les chantiers Toulousains en date du ${formatDate(date)}
+
 
 ```js
 const raw = await FileAttachment("./data/travaux.json").json();
-const date = raw[0].date
-const chantiers = raw[0].value
+````
 
-
+```js
+let fileset = +localStorage.getItem("travaux")
+fileset = fileset?fileset:0
+const date = raw[fileset].date
+const chantiers = raw[fileset].value
 const formatDate = d => d3.timeFormat("%d-%b-%Y")(new Date(d.substring(0,10)))
+````
+
+# Les chantiers Toulousains en date du ${formatDate(raw?.[fileset]?.date)}
+
+# Les chantiers Toulousains en date du ${fileset}
+
+```js
+
 display(Inputs.table(chantiers, {format:{
     datedebut: d => formatDate(d),
     datefin: d => formatDate(d)}
