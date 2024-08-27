@@ -22,11 +22,8 @@ let fileset=0
 fileset = await view(Inputs.select(new Map(raw.map((d, i) => [d.date, i])), {
   value: 0, label : "Date à sélectionner"}
 ));
-````
-
-```js
 localStorage.setItem("travaux", fileset.toString())
-view(Inputs.button("Delete", {value: null, reduce: () => {remove(fileset); fileset=0}))
+view(Inputs.button("Delete", {value: null, reduce: () => {remove(fileset); fileset=0}}))
 ````
 
 
