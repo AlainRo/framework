@@ -113,15 +113,15 @@ let history = []
 
 let file = "?"
 try {
-  file = readdirSync('./_file/data').filter(fileName => fileName.split('.')[0]==='history')[0]
-  const historyF = readFileSync('./_file/data/'+file)
+  file = readdirSync('./data').filter(fileName => fileName.split('.')[0]==='history')[0]
+  const historyF = readFileSync('./data/'+file)
   history = JSON.parse(historyF)
   //close('./src/data/history.json')
-  appendFileSync('./_file/data/log.txt', 'Read ' + file + ' OK '+new Date()+'\n')
+  appendFileSync('./data/log.txt', 'Read ' + file + ' OK '+new Date()+'\n')
   }
 catch (err) {
   console.error(err)
-  appendFileSync('./src/data/log.txt', 'Read ' + file + ' KO '+new Date()+'\n')
+  appendFileSync('./data/log.txt', 'Read ' + file + ' KO '+new Date()+'\n')
   }
 
  // Add the time of exact run time
