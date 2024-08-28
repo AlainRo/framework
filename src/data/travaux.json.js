@@ -111,8 +111,9 @@ const data = raw.map((d) => {
 // Recover history
 let history = []
 
+let file = "?"
 try {
-  const file = readdirSync('./_file/data').filter(fileName => fileName.split('.')[0]==='history')[0]
+  file = readdirSync('./_file/data').filter(fileName => fileName.split('.')[0]==='history')[0]
   const historyF = readFileSync('./_file/data/'+file)
   history = JSON.parse(historyF)
   //close('./src/data/history.json')
