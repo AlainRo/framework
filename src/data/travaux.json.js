@@ -1,9 +1,10 @@
 
-import {writeFileSync, readFileSync} from 'node:fs';
+import {close, appendFileSync, writeFileSync, readFileSync} from 'node:fs';
 
 async function json(url){
     const response = await fetch(url)
     if (!response.ok) throw new Error(`fetch failed: ${response.status}`)
+    writeFileSync('./src/data/log.txt', 'Read Origin OK '+new Date()+'\n')
     return await response.json();
 }
 
@@ -113,9 +114,12 @@ let history = []
 try {
   const historyF = readFileSync('./src/data/history.json')
   history = JSON.parse(historyF)
+  //close('./src/data/history.json')
+  appendFileSync('./src/data/log.txt', 'Read history OK '+new Date()+'\n')
   }
 catch (err) {
   console.error(err)
+  appendFileSync('./src/data/log.txt', 'Read history KO '+new Date()+'\n')
   }
 
  // Add the time of exact run time
@@ -133,9 +137,13 @@ catch (err) {
 const hist = JSON.stringify(history)
  try {
    writeFileSync('./src/data/history.json', hist);
+   //close('./src/data/history.json')
+   appendFileSync('./src/data/log.txt', 'Write history OK '+new Date()+'\n')
+
    // file written successfully
   } catch (err) {
    console.error(err);
+   appendFileSync('./src/data/log.txt', 'Write history KO '+new Date()+'\n')
   }
 
 //console.error(content)

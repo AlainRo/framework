@@ -19,11 +19,11 @@ const raw = await FileAttachment("./data/travaux.json").json();
 
 ```js
 let fileset=0
-fileset = await view(Inputs.select(new Map(raw.map((d, i) => [d.date, i])), {
+fileset = view(Inputs.select(new Map(raw.map((d, i) => [d.date, i])), {
   value: 0, label : "Date à sélectionner"}
 ));
 localStorage.setItem("travaux", fileset.toString())
-await view(Inputs.button("Delete", {value: null, reduce: () => {remove(fileset); fileset=0}}))
+
 ```
 
 
@@ -44,8 +44,8 @@ const Global = await localStorage.getItem("travaux")
 ```
 
 
-<a href="./data/history.json" download > Download </a>
-
+<a href="./data/history.json" download > History </a>
+<a href="./data/log.txt" download > Log </a>
 
 
 # Les statistiques des chantiers en cours

@@ -1,4 +1,3 @@
-//import { writeFileSync, readFileSync } from 'node:fs';
 
 export function compare(present, past) {
     if (past === undefined) return {added : 'none', deleted: 'none', modified: 'none'}
@@ -12,30 +11,3 @@ export function compare(present, past) {
     return {added : added, deleted: deleted, modified: 0}
 }
 
-export function remove(n) {
-    // load history
-    let history = [];
-    try {
-      const historyF = readFileSync('./src/data/history.json')
-      history = JSON.parse(historyF)  
-    }
-    catch (err) {
-      console.error(err)
-    }
-
-// remove entry
-    const remo = history.filter((d,i) => i!== n)
-//save history
-    const hist = JSON.stringify(remo)
-
-    try {
-        writeFileSync('./src/data/history.json', hist);
-    // file written successfully
-    } catch (err) {
-        console.error(err);
-    }
-    return remo.length
-}
-export function download() {
-    // load history
-}
