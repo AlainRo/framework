@@ -27,12 +27,14 @@ export function remove(n) {
     const remo = history.filter((d,i) => i!== n)
 //save history
     const hist = JSON.stringify(remo)
+
     try {
-        writeFileSync('src/data/history.json', hist);
+        writeFileSync('./src/data/history.json', hist);
     // file written successfully
     } catch (err) {
         console.error(err);
     }
+    return remo.length
 }
 export function download() {
     // load history

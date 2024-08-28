@@ -23,8 +23,8 @@ fileset = await view(Inputs.select(new Map(raw.map((d, i) => [d.date, i])), {
   value: 0, label : "Date à sélectionner"}
 ));
 localStorage.setItem("travaux", fileset.toString())
-view(Inputs.button("Delete", {value: null, reduce: () => {remove(fileset); fileset=0}}))
-````
+await view(Inputs.button("Delete", {value: null, reduce: () => {remove(fileset); fileset=0}}))
+```
 
 
 ```js
@@ -37,6 +37,7 @@ const added = comp.added
 const modified = comp.modified
 const deleted = comp.deleted
 const div = display(document.createElement("div"));
+const Global = await localStorage.getItem("travaux")
 
 //download(raw);
 
