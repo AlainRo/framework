@@ -1,5 +1,5 @@
 
-import {close, appendFileSync, writeFileSync, readFileSync} from 'node:fs';
+import {readdirSync, appendFileSync, writeFileSync, readFileSync} from 'node:fs';
 
 async function json(url){
     const response = await fetch(url)
@@ -112,14 +112,15 @@ const data = raw.map((d) => {
 let history = []
 
 try {
-  const historyF = readFileSync('./src/data/history.json')
+  const file = readdirSync('./src/data').filter(fileName => fileName.split('.')[0]==='history')
+  const historyF = readFileSync('./src/data/'+file[0])
   history = JSON.parse(historyF)
   //close('./src/data/history.json')
-  appendFileSync('./src/data/log.txt', 'Read history OK '+new Date()+'\n')
+  appendFileSync('./src/data/log.txt', 'Read ' + file[0] + ' OK '+new Date()+'\n')
   }
 catch (err) {
   console.error(err)
-  appendFileSync('./src/data/log.txt', 'Read history KO '+new Date()+'\n')
+  appendFileSync('./src/data/log.txt', 'Read ' + file[0] + ' KO '+new Date()+'\n')
   }
 
  // Add the time of exact run time

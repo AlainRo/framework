@@ -10,7 +10,7 @@ toc: false
 ```js
 
 import {loadchart} from "./components/loadchart.js"
-import {compare, remove} from "./components/compare.js"
+import {compare} from "./components/compare.js"
 //import {download} from "./components/download.js" // Inutile pour un fichier statique
 
 
