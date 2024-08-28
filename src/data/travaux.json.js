@@ -112,15 +112,15 @@ const data = raw.map((d) => {
 let history = []
 
 try {
-  const file = readdirSync('./src/data').filter(fileName => fileName.split('.')[0]==='history')
-  const historyF = readFileSync('./src/data/'+file[0])
+  const file = readdirSync('./_file/data').filter(fileName => fileName.split('.')[0]==='history')[0]
+  const historyF = readFileSync('./_file/data/'+file)
   history = JSON.parse(historyF)
   //close('./src/data/history.json')
-  appendFileSync('./src/data/log.txt', 'Read ' + file[0] + ' OK '+new Date()+'\n')
+  appendFileSync('./_file/data/log.txt', 'Read ' + file + ' OK '+new Date()+'\n')
   }
 catch (err) {
   console.error(err)
-  appendFileSync('./src/data/log.txt', 'Read ' + file[0] + ' KO '+new Date()+'\n')
+  appendFileSync('./src/data/log.txt', 'Read ' + file + ' KO '+new Date()+'\n')
   }
 
  // Add the time of exact run time
@@ -137,7 +137,7 @@ catch (err) {
 
 const hist = JSON.stringify(history)
  try {
-   writeFileSync('./src/data/history.json', hist);
+   writeFileSync('./_file/data/'+file, hist);
    //close('./src/data/history.json')
    appendFileSync('./src/data/log.txt', 'Write history OK '+new Date()+'\n')
 
