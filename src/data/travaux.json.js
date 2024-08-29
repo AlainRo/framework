@@ -114,9 +114,9 @@ let history = []
 let file = "?"
 let dir = []
 try {
-  dir = readdirSync('./dist/data')
+  dir = readdirSync('./src/data')
   file = readdirSync('./src/data').filter(fileName => fileName.split('.')[0]==='history')[0]
-  const historyF = readFileSync('./data/'+file)
+  const historyF = readFileSync('./src/data/'+file)
   history = JSON.parse(historyF)
   //close('./src/data/history.json')
   appendFileSync('./src/data/log.txt', 'Read ' + dir + file + ' OK '+new Date()+'\n')
