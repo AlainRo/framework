@@ -6,7 +6,7 @@ on:
   # Run this workflow when triggered manually in GitHub’s UI.
   workflow_dispatch: {}
 
-jobs:
+job_1:
   deploy:
     runs-on: ubuntu-latest
     steps:
@@ -23,3 +23,22 @@ jobs:
         env:
           # Authentication information. See below for how to set this up.
           OBSERVABLE_TOKEN: ${{secrets.OBSERVABLE_TOKEN }}
+      - name: Dowload history
+        uses: actions/download-artifact@v4
+        with:
+          name: history.json
+          path: ./src/data/history.json
+job_2:
+  name: Upload history
+  needs: job_1
+  runs_on: ubuntu-latest
+  steps:
+    - shell: bash
+    - name: Upload
+      uses: actions/upload-artifact@v4
+      with:
+        name: history
+        path: ./src/data/history.json
+        
+      
+  
