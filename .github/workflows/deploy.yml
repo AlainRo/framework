@@ -6,7 +6,7 @@ on:
   # Run this workflow when triggered manually in GitHub’s UI.
   workflow_dispatch: {}
 
-job_1:
+jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
@@ -28,13 +28,13 @@ job_1:
         with:
           name: history.json
           path: ./src/data/history.json
-job_2:
-  name: Upload history
-  needs: job_1
-  runs_on: ubuntu-latest
-  steps:
-    - shell: bash
-    - name: Upload
+  history:
+    name: Upload history
+    needs: job_1
+    runs_on: ubuntu-latest
+    steps:
+      - shell: bash
+      - name: Upload
       uses: actions/upload-artifact@v4
       with:
         name: history
