@@ -140,7 +140,7 @@ catch (err) {
 
 const hist = JSON.stringify(history)
  try {
-   writeFileSync('./src/data/'+file, hist);
+   writeFileSync('./src/data/history.json', hist);
    //close('./src/data/history.json')
    appendFileSync('./src/data/log.txt', 'Write history OK '+new Date()+'\n')
 
