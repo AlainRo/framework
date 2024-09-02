@@ -22,23 +22,5 @@ jobs:
         run: npm run deploy -- --message "$(git log -1 --pretty=%s)"
         env:
           # Authentication information. See below for how to set this up.
-          OBSERVABLE_TOKEN: ${{secrets.OBSERVABLE_TOKEN }}
-      - name: Dowload history
-        uses: actions/download-artifact@v4
-        with:
-          name: history.json
-          path: ./src/data/history.json
-  history:
-    name: Upload history
-    needs: deploy
-    runs_on: ubuntu-latest
-    steps:
-      - shell: bash
-      - name: Upload
-      uses: actions/upload-artifact@v4
-      with:
-        name: history
-        path: ./src/data/history.json
-        
-      
+          OBSERVABLE_TOKEN: ${{secrets.OBSERVABLE_TOKEN }}     
   
