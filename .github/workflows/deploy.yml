@@ -22,4 +22,5 @@ jobs:
         run: npm run deploy -- --message "$(git log -1 --pretty=%s)"
         env:
           # Authentication information. See below for how to set this up.
-          OBSERVABLE_TOKEN: ${{secrets.OBSERVABLE_TOKEN }}
+          OBSERVABLE_TOKEN: ${{secrets.OBSERVABLE_TOKEN }}     
+  
