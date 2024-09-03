@@ -18,7 +18,7 @@ jobs:
           cache: npm
       - name: Cache history.json
         id: cache-history
-        uses: actions/caches@v4
+        uses: actions/cache@v4
         with:
           path: history.json
       - run: npm ci
