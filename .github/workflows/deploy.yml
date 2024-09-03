@@ -5,6 +5,7 @@ on:
   schedule: [{cron: "0 6 * * *"}]
   # Run this workflow when triggered manually in GitHub’s UI.
   workflow_dispatch: {}
+  # Try the cache directive to preserve history.json
 
 jobs:
   deploy:
@@ -15,6 +16,11 @@ jobs:
         with:
           node-version: 20
           cache: npm
+      - name: Cache history.json
+        id: cache-history
+        uses: actions/caches@v4
+        with:
+          path: .src/data/history.json
       - run: npm ci
       - run: npm run build
       - name: Deploy to Observable Cloud
