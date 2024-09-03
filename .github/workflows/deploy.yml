@@ -20,7 +20,7 @@ jobs:
         id: cache-history
         uses: actions/caches@v4
         with:
-          path: ./_file/data/history.json
+          path: history.json
       - run: npm ci
       - run: npm run build
       - name: Deploy to Observable Cloud
