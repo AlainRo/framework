@@ -116,7 +116,7 @@ let dir = []
 try {
   dir = readdirSync('./_file/data')
   file = readdirSync('./_file/data').filter(fileName => fileName.split('.')[0]==='history')[0]
-  const historyF = readFileSync('./src/data/'+file)
+  const historyF = readFileSync('./_file/data/'+file)
   history = JSON.parse(historyF)
   //close('./src/data/history.json')
   appendFileSync('./src/data/log.txt', 'Read ' + dir + file + ' OK '+new Date()+'\n')
@@ -140,14 +140,14 @@ catch (err) {
 
 const hist = JSON.stringify(history)
  try {
-   writeFileSync('./_file/data/history.json', hist);
+   writeFileSync('./_file/data/'+file, hist);
    //close('./src/data/history.json')
-   appendFileSync('./src/data/log.txt', 'Write history OK '+new Date()+'\n')
+   appendFileSync('./src/data/log.txt', 'Write history OK '+ file + new Date()+'\n')
 
    // file written successfully
   } catch (err) {
    console.error(err);
-   appendFileSync('./src/data/log.txt', 'Write history KO '+new Date()+'\n')
+   appendFileSync('./src/data/log.txt', 'Write history KO '+ file + new Date()+'\n')
   }
 
 //console.error(content)
