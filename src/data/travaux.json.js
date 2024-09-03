@@ -116,6 +116,8 @@ let dir = []
 try {
   dir = readdirSync('./_file/data')
   file = readdirSync('./_file/data').filter(fileName => fileName.split('.')[0]==='history')[0]
+  if (file===undefined){file = readdirSync('./src/data').filter(fileName => fileName.split('.')[0]==='history')[0]}
+  if (file===undefined) {file = history.json}
   const historyF = readFileSync('./_file/data/'+file)
   history = JSON.parse(historyF)
   //close('./src/data/history.json')
