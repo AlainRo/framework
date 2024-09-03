@@ -118,7 +118,7 @@ try {
   file = readdirSync('./_file/data').filter(fileName => fileName.split('.')[0]==='history')[0]
   if (file===undefined){file = readdirSync('./src/data').filter(fileName => fileName.split('.')[0]==='history')[0]}
   if (file===undefined) {file = history.json}
-  const historyF = readFileSync('./_file/data/'+file)
+  const historyF = readFileSync('./data/'+file)
   history = JSON.parse(historyF)
   //close('./src/data/history.json')
   appendFileSync('./src/data/log.txt', 'Read ' + dir + file + ' OK '+new Date()+'\n')
@@ -142,7 +142,7 @@ catch (err) {
 
 const hist = JSON.stringify(history)
  try {
-   writeFileSync('./_file/data/'+file, hist);
+   writeFileSync('./data/'+file, hist);
    //close('./src/data/history.json')
    appendFileSync('./src/data/log.txt', 'Write history OK '+ file + new Date()+'\n')
 
