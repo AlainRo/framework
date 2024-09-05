@@ -44,7 +44,7 @@ const Global = await localStorage.getItem("travaux")
 ```
 
 
-<a href="./data/history.json" download > History </a>
+<a href="./history.json" download > History </a>
 <a href="./data/log.txt" download > Log </a>
 
 
