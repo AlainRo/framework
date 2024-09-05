@@ -117,7 +117,7 @@ try {
   dir = readdirSync('./')
   file = readdirSync('./').filter(fileName => fileName.split('.')[0]==='history')[0]
   //if (file===undefined){file = readdirSync('.').filter(fileName => fileName.split('.')[0]==='history')[0]}
-  if (file===undefined) {file = history.json}
+  if (file===undefined) {file = 'history.json'}
   const historyF = readFileSync('./'+file)
   history = JSON.parse(historyF)
   //close('./src/data/history.json')
