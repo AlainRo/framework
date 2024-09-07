@@ -121,7 +121,7 @@ try {
   const historyF = readFileSync('./'+file)
   history = JSON.parse(historyF)
   //close('./src/data/history.json')
-  appendFileSync('./src/data/log.txt', 'Read ' + dir + file + ' OK '+new Date()+'\n')
+  appendFileSync('./src/data/log.txt', 'Read ' + dir + file + ' OK '+new Date()+ 'length:' + history.length+'\n')
   }
 catch (err) {
   console.error(err)
@@ -138,6 +138,10 @@ catch (err) {
  while (history.length > 10)
   {history.pop()}
 
+ //parse the history and stick to 4 digits of precision for coordinates
+
+
+ //compress all the chantiers which did not change
 
 
 const hist = JSON.stringify(history)

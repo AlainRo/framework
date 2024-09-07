@@ -45,7 +45,7 @@ const Global = await localStorage.getItem("travaux")
 
 
 <a href="./history.json" download > History </a>
-<a href="./data/log.txt" download > Log </a>
+<a href="./src/data/log.txt" download > Log </a>
 
 
 # Les statistiques des chantiers en cours
